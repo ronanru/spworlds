@@ -1,0 +1,211 @@
+@media screen and (min-width: 2000px) {
+  section {
+    padding: 1rem calc(50% - 700px) 3rem calc(50% - 700px) !important;
+  }
+
+  header, footer {
+    padding: 5px calc(50% - 700px) !important;
+  }
+
+  main div {
+    margin: 5px 10% 3rem 10% !important;
+  }
+}
+@media screen and (max-width: 1200px) {
+  section {
+    padding: 1rem 10% 3rem 10% !important;
+  }
+
+  main div {
+    margin: 5px 10% 3rem 10% !important;
+  }
+
+  header, footer {
+    padding: 5px 10% !important;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .info, .servers {
+    grid-template-columns: 1fr !important;
+  }
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Fira Sans", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  color: white;
+  background: #202020;
+}
+
+header, footer {
+  height: 2rem;
+  background: #202020;
+  display: flex;
+  align-items: center;
+  padding: 5px 15%;
+}
+
+a {
+  color: white;
+}
+
+header img {
+  margin-right: 1rem;
+}
+
+footer {
+  justify-content: space-between;
+}
+
+img {
+  height: 100%;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.spacer {
+  flex: 1;
+}
+
+section {
+  padding: 1rem 15% 3rem 15%;
+}
+
+main {
+  text-align: center;
+  min-height: 40vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: content-box radial-gradient(#000000e7, transparent), url("../img/bg.jpg");
+  background-size: cover, cover;
+  background-position: center, center;
+  padding: 0px;
+}
+main div {
+  margin: 5px 15% 3rem 15%;
+}
+main h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+main p {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.info {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+  line-height: 1.5rem;
+}
+.info button {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
+}
+
+button {
+  color: white;
+  background-color: #181818;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+button:focus {
+  outline: 2px dashed #0a0a0a;
+  outline-offset: 5px;
+}
+button:hover, button:active {
+  background-color: #0a0a0a;
+}
+
+.our-servers {
+  background: #181818;
+}
+
+.servers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+.servers h1 {
+  margin-bottom: 0.5rem;
+}
+.servers div {
+  background: #202020;
+  padding: 1rem;
+  border-radius: 10px;
+}
+.servers img {
+  margin: 0px auto;
+  height: 10rem;
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+}
+.price button {
+  font-size: 1.2rem;
+  padding: 10px;
+}
+
+#modal {
+  position: fixed;
+  background: #00000080;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.25s ease;
+}
+
+form {
+  background: #202020;
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+form h1 {
+  margin: 0;
+}
+form button {
+  font-size: 1.2rem;
+  padding: 10px;
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1rem;
+  color: white;
+  background-color: #181818;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.5s ease;
+  outline: none;
+}
+input:focus {
+  background-color: #0a0a0a;
+}
+
+/*# sourceMappingURL=styles.css.map */

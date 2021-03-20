@@ -1,0 +1,9 @@
+{
+  "name": "spworlds.ru",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev":  "concurrently --kill-others \"sass --watch src/:./dist/\" \"tsc -w\""
+  }
+}

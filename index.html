@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Ronan (ronandev.ru)" />
+    <meta name="description" content="Оригинальный проект в основе которого лежит ванильный сервер по Minecraft и полная свобода действий на нём." />
+    <meta name="keyworlds" content="сп, майнкрафт, спм, спб, minecraft, приватный сервер, ванильный сервер майнкрафт, страна подписчиков, сп мини, сп бедрок" />
+    <title>СП - Сервера по Майнкрафту</title>
+    <meta name="og:type" content="website" />
+    <meta name="og:title" content="СП - Сервера по Майнкрафту" />
+    <meta name="og:url" content="spworlds.ru" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta name="og:description" content="Оригинальный проект в основе которого лежит ванильный сервер по Minecraft и полная свобода действий на нём." />
+    <meta property="og:image" content="./img/logo.png" />
+    <link rel="stylesheet" href="./dist/styles.css" />
+    <link rel="icon" href="./img/logo.png" />
+  </head>
+  <body>
+    <header>
+      <img src="./img/logo.png" alt="СП" />
+      <span>Страна Подписчиков</span>
+      <div class="spacer"></div>
+      <a href="">Группа ВК</a>
+    </header>
+    <main>
+      <div>
+        <h1>Уникальные Майнкрафт сервера</h1>
+        <p>СП - Это это целая страна на ванильном сервере майнкрафт.<br />Без гриферов, приватов или доната.</p>
+      </div>
+    </main>
+    <section class="info">
+      <div>
+        <h1>Что такое СП?</h1>
+        <p>
+          СП - это оригинальный проект в основе которого лежит ванильный сервер по Minecraft и полная свобода действий на нём. Только помните, что ваша свобода заканчивается
+          там, где начинается свобода другого игрока. На наших серверах есть ПРАВИЛА и ЗАКОНЫ. Нарушая правила, а именно: Быть адекватным игроком, не гриферить, не мешать
+          другим игрокам наслаждаться игрой, Вы будете забанены навсегда без суда. Нарушив законы, которые принимает правительство сервера, над вами будет проведён суд как в
+          реальной жизни.
+        </p>
+        <p>Если у тебя есть какие-то вопросы, ты можешь их задать <a href="https://vk.com/spworlds">в нашей группе ВКонтакте</a></p>
+      </div>
+      <div>
+        <h1>Попробуй СП бесплатно</h1>
+        <button onclick="copyIp()" id="ipBytton">IP: mc.spworlds.ru</button>
+        <input type="text" value="mc.spworlds.ru" id="ipInput" style="display: none" />
+        <p>Тут можно пообщаться с друзьями, порыбачить, побывать на концерте и просто хорошо провести время. Для входа требуется Лицензионный Java Minecraft версии 1.16.5</p>
+      </div>
+    </section>
+    <section class="our-servers">
+      <h1>Наши сервера</h1>
+      <div class="servers">
+        <div>
+          <img src="./img/sp.png" alt="СП" />
+          <h1>СП</h1>
+          <p>
+            Основной сервер, куда войти можно только с лицензией. За жизнью данного сервера следят большинство зрителей стримов от разных ютуберов. Игроки могут создавать свои
+            города или вступать в уже созданные общины.
+          </p>
+          <p class="price">3 000 ₽ <button onclick="buy(0)">Купить</button></p>
+        </div>
+        <div>
+          <img src="./img/spm.gif" alt="СПм" />
+          <h1>СПм</h1>
+          <p>
+            Подразделение СП для которого требуется лицензионный Майнкрафт. На этом сервере проходят обходы на которых игроки демонстрируют, что они успели сделать за время
+            пребывания на сервере. Игроки этого сервера САМИ выбирают президента, который будет руководить жизнью сервера.
+          </p>
+          <p class="price">1 500 ₽ <button onclick="buy(1)">Купить</button></p>
+        </div>
+        <div>
+          <img src="./img/spb.png" alt="СПб" />
+          <h1>СПб</h1>
+          <p>
+            Долгожданный сервер СП - бедрок сервер, на который можно заходить и с телефона, и с ПК. Основное кредо этого сервера - взаимоуважение, ролеплей, нет читерам и
+            нон-рпшерам. На сервере действуют органы местного самоуправления. Приятного выживания!
+          </p>
+          <p class="price">900 ₽ <button onclick="buy(2)">Купить</button></p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <p>© SPWorlds.ru 2021</p>
+      <p>Made with ❤️ by <a href="https://ronandev.ru">Ronan</a></p>
+    </footer>
+    <div id="modal" style="display: none; opacity: 0">
+      <form action="/da.html">
+        <input type="text" name="server" id="serverInput" style="display: none" />
+        <h1 id="formTitle"></h1>
+        <p>
+          Мы желаем осуществлять индивидуальный подход к каждому игроку наших серверов. Вы получите доступ не сразу после доната. В течении 24х часов с момента доната, Вам
+          напишет администратор, который предоставит вам ссылку на группу в ВК, ссылку на специальный канал в дискорде, впишет ваш ник в WhiteList и даст вам IP сервера.
+        </p>
+        <label for="vkInput">Ссылка на ваш профиль в ВК</label>
+        <input type="text" id="vkInput" name="vk" value="https://vk.com/" />
+        <p>Убедитесь, что ссылка верная и у вас открыта личка.</p>
+        <button>Войти на сервер</button>
+      </form>
+    </div>
+    <script src="./dist/index.js"></script>
+  </body>
+</html>
