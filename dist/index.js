@@ -1,26 +1,26 @@
 "use strict";
-var copyIp = function () {
+const copyIp = () => {
     if ('clipboard' in navigator) {
-        navigator.clipboard.writeText('mc.spworlds.ru').then(function () {
-            var ipBytton = document.getElementById('ipBytton');
+        navigator.clipboard.writeText('mc.spworlds.ru').then(() => {
+            const ipBytton = document.getElementById('ipBytton');
             ipBytton.innerText = 'Скопировано!';
-            setTimeout(function () {
+            setTimeout(() => {
                 ipBytton.innerText = 'IP: mc.spworlds.ru';
             }, 1000);
         });
     }
 };
-var modal = document.getElementById('modal'), formTitle = document.getElementById('formTitle'), serverInput = document.getElementById('serverInput');
-var buy = function (server) {
+const modal = document.getElementById('modal'), formTitle = document.getElementById('formTitle'), serverInput = document.getElementById('serverInput');
+const buy = (server) => {
     modal.style.display = 'grid';
-    formTitle.innerText = "\u0412\u043E\u0439\u0442\u0438 \u043D\u0430" + ['СП', 'СПм', 'СПб'][server];
+    formTitle.innerText = `Войти на ${['СП', 'СПм', 'СПб'][server]}`;
     serverInput.value = server.toString();
-    setTimeout(function () { return (modal.style.opacity = '1'); }, 1);
+    setTimeout(() => (modal.style.opacity = '1'), 1);
 };
-window.onclick = function (event) {
+window.onclick = (event) => {
     if (event.target == modal) {
         modal.style.opacity = '0';
-        setTimeout(function () { return (modal.style.display = 'none'); }, 500);
+        setTimeout(() => (modal.style.display = 'none'), 500);
     }
 };
 //# sourceMappingURL=index.js.map
