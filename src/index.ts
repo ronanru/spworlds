@@ -12,7 +12,10 @@ const copyIp = (): void => {
 
 const modal = document.getElementById('modal') as HTMLElement,
   formTitle = document.getElementById('formTitle') as HTMLElement,
-  serverInput = document.getElementById('serverInput') as HTMLInputElement;
+  serverInput = document.getElementById('serverInput') as HTMLInputElement,
+  billingInput = document.getElementById('billingInput') as HTMLInputElement,
+  qiwiInputContainer = document.getElementById('qiwiInputContainer') as HTMLElement,
+  telInputContainer = document.getElementById('telInputContainer') as HTMLElement;
 
 const buy = (server: number): void => {
   modal.style.display = 'grid';
@@ -26,4 +29,11 @@ window.onclick = (event: Event) => {
     modal.style.opacity = '0';
     setTimeout(() => (modal.style.display = 'none'), 500);
   }
+};
+
+const onInputChange = () => {
+  if (billingInput.value == 'QIWI_MYCOM') qiwiInputContainer.style.display = 'grid';
+  else qiwiInputContainer.style.display = 'none';
+  if (billingInput.value == 'MOBILE_FAKE') telInputContainer.style.display = 'grid';
+  else telInputContainer.style.display = 'none';
 };

@@ -1,6 +1,6 @@
 $bg: #202020
 $bg-alt: #181818
-$bg-alt-lighter: #0a0a0a
+$bg-alt-lighter: #131313
 
 @media screen and ( min-width: 2000px )
   section
@@ -68,7 +68,8 @@ main
   display: grid
   grid-template-columns: 1fr 400px
   gap: 2rem
-  line-height: 1.5rem
+  p
+    line-height: 1.5rem
   button
     width: 100%
     padding: 1rem
@@ -129,16 +130,18 @@ form
   max-width: 500px
   display: flex
   flex-direction: column
-  gap: .5rem
-  h1
+  gap: 2rem
+  h1, p
     margin: 0
   button
     font-size: 1.2rem
     padding: 10px
+  div
+    display: grid
+    gap: .5rem
 input
-  width: 100%
-  box-sizing: border-box
   font-size: 1rem
+  font-family: inherit
   color: white
   background-color: $bg-alt
   border: none
@@ -149,3 +152,37 @@ input
   outline: none
   &:focus
     background-color: $bg-alt-lighter
+select
+  border: none
+  font-size: 1rem
+  font-family: inherit
+  color: white
+  cursor: pointer
+  background: transparent
+  appearance: none
+  outline: none
+  grid-area: select
+  padding: 10px
+  &::-ms-expand
+    display: none
+.select
+  border-radius: 5px
+  background-color: $bg-alt
+  grid-template-areas: "select"
+  display: grid
+  align-items: center
+  &:focus-within
+    background-color: $bg-alt-lighter
+    &::after
+      transform: rotate(180deg)
+  &::after
+    justify-self: end
+    margin-right: 10px
+    box-sizing: border-box
+    content: ""
+    width: 0.8em
+    height: 0.5em
+    background-color: white
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%)
+    grid-area: select
+    transition: transform .25s ease

@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev":  "concurrently --kill-others \"sass --watch src/:./dist/\" \"tsc -w\""
+    "dev":  "concurrently --kill-others \"sass --watch --no-source-map src/:./dist/\" \"tsc -w\"",
+    "autoprefix": "autoprefixer-cli -o ./dist/styles.css ./dist/styles.css"
   }
 }

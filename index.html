@@ -58,7 +58,7 @@
             Основной сервер, куда войти можно только с лицензией. За жизнью данного сервера следят большинство зрителей стримов от разных ютуберов. Игроки могут создавать свои
             города или вступать в уже созданные общины.
           </p>
-          <p class="price">3 000 ₽ <button onclick="buy(0)">Купить</button></p>
+          <p class="price">3 500 ₽ <button onclick="buy(0)">Купить</button></p>
         </div>
         <div>
           <img src="./img/spm.gif" alt="СПм" />
@@ -85,16 +85,52 @@
       <p>Made with ❤️ by <a href="https://ronandev.ru">Ronan</a></p>
     </footer>
     <div id="modal" style="display: none; opacity: 0">
-      <form action="/spworlds/da.html">
+      <form action="http://localhost:3000" method="POST">
         <input type="text" name="server" id="serverInput" style="display: none" />
         <h1 id="formTitle"></h1>
         <p>
           Мы желаем осуществлять индивидуальный подход к каждому игроку наших серверов. Вы получите доступ не сразу после доната. В течении 24х часов с момента доната, Вам
           напишет администратор, который предоставит вам ссылку на группу в ВК, ссылку на специальный канал в дискорде, впишет ваш ник в WhiteList и даст вам IP сервера.
         </p>
-        <label for="vkInput">Ссылка на ваш профиль в ВК</label>
-        <input type="text" id="vkInput" name="vk" value="https://vk.com/" />
-        <p>Убедитесь, что ссылка верная и у вас открыта личка.</p>
+        <div>
+          <label for="vkInput">Ссылка на ваш профиль в ВК</label>
+          <input type="url" id="vkInput" name="vk" value="https://vk.com/" required />
+          <p>Убедитесь, что ссылка верная и у вас открыта личка.</p>
+        </div>
+        <div>
+          <label for="billingInput">Способ оплаты</label>
+          <div class="select">
+            <select name="billing" id="billingInput" required onchange="onInputChange()">
+              <option value="CPGCRDPW" selected>Visa/MasterCard RUB</option>
+              <option value="QIWI_MYCOM">QIWI</option>
+              <option value="VKPAY">VK PAY</option>
+              <option value="YD_MYCOM">YooMoney</option>
+              <option value="WME_MYCOM">WebMoney WME</option>
+              <option value="WMZ_MYCOM">WebMoney WMZ</option>
+              <option value="MOBILE_FAKE">Телефон</option>
+              <option value="BITPAY_EURO">Bitcoin</option>
+              <option value="PAYPAL_RUR">PayPal RUB</option>
+              <option value="PAYPAL_EURO">PayPal EUR</option>
+              <option value="PAYPAL_USD">PayPal USD</option>
+              <option value="CPG_EURO">Visa/MasterCard EUR</option>
+              <option value="CPG_USD">Visa/MasterCard USD</option>
+              <option value="BOACOMPRA_USD_VISA">Visa BRL</option>
+              <option value="BOACOMPRA_USD_MC">MasterCard BRL</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="emailInput">Email (нужен только для оплаты)</label>
+          <input type="email" id="emailInput" name="email" required />
+        </div>
+        <div id="qiwiInputContainer" style="display: none">
+          <label for="qiwiInput">Номер QIWI кошелька</label>
+          <input type="tel" id="qiwiInput" name="phone_number" />
+        </div>
+        <div id="telInputContainer" style="display: none">
+          <label for="telInput">Номер телефона</label>
+          <input type="tel" id="telInput" name="phone" />
+        </div>
         <button>Войти на сервер</button>
       </form>
     </div>
