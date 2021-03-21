@@ -7,12 +7,13 @@ const fastify_1 = __importDefault(require("fastify"));
 const server = fastify_1.default({ logger: { level: 'info' } });
 server.register(require('fastify-formbody'));
 server.post('/', async (req) => {
+    var _a, _b;
     const res = await fetch('https://www.donationalerts.com/u/ronedit', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: `data=${encodeURIComponent(`step=billing&currency=2&amount=${[3500, 1500, 1000][req.body.server]}&email=${req.body.email}&billing_system_type=${req.body.billing}&name=АвтоДонат&comment=${req.body.vk}`)}`
+        body: `data=${encodeURIComponent(`step=billing&currency=2&amount=${[3500, 1500, 1000][req.body.server]}&email=${req.body.email}&billing_system_type=${req.body.billing}&name=АвтоДонат&comment=${req.body.vk}&phone=${(_a = req.body.phone) !== null && _a !== void 0 ? _a : ''}&phone_number=${(_b = req.body.phone_number) !== null && _b !== void 0 ? _b : ''}`)}`
     });
     if (req.ok) {
         const json = await res.json();
