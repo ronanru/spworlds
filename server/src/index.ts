@@ -13,7 +13,7 @@ server.post('/', async (req: any) => {
     body: `data=${encodeURIComponent(
       `step=billing&currency=2&amount=${[3500, 1500, 1000][req.body.server]}&email=${req.body.email}&billing_system_type=${req.body.billing}&name=АвтоДонат&comment=${
         req.body.vk
-      }`
+      }&phone=${req.body.phone ?? ''}&phone_number=${req.body.phone_number ?? ''}`
     )}`
   });
   if (req.ok) {
