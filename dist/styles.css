@@ -26,8 +26,7 @@
 }
 @media screen and (max-width: 1000px) {
   .info, .servers {
-    -ms-grid-columns: 1fr !important;
-        grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr !important;
   }
 }
 body {
@@ -40,10 +39,8 @@ body {
 header, footer {
   height: 2rem;
   background: #202020;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-align: center;
-      align-items: center;
+  align-items: center;
   padding: 5px 15%;
 }
 
@@ -52,12 +49,11 @@ a {
 }
 
 header img {
-  margin-right: 1rem;
+  margin-right: 0.5rem;
 }
 
 footer {
-  -ms-flex-pack: justify;
-      justify-content: space-between;
+  justify-content: space-between;
 }
 
 img {
@@ -69,8 +65,7 @@ h1 {
 }
 
 .spacer {
-  -ms-flex: 1;
-      flex: 1;
+  flex: 1;
 }
 
 section {
@@ -80,14 +75,10 @@ section {
 main {
   text-align: center;
   min-height: 40vh;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
   background: content-box radial-gradient(#000000e7, transparent), url("../img/bg.jpg");
   background-size: cover, cover;
@@ -107,10 +98,8 @@ main p {
 }
 
 .info {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 400px;
-      grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr 400px;
   gap: 2rem;
 }
 .info p {
@@ -143,10 +132,8 @@ button:hover, button:active {
 }
 
 .servers {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   text-align: center;
 }
@@ -164,12 +151,9 @@ button:hover, button:active {
 }
 
 .price {
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-  -ms-flex-align: center;
-      align-items: center;
+  justify-content: space-between;
+  align-items: center;
   font-size: 1.8rem;
   font-weight: bold;
   margin: 0;
@@ -187,7 +171,6 @@ button:hover, button:active {
   bottom: 0;
   left: 0;
   right: 0;
-  display: -ms-grid;
   display: grid;
   place-items: center;
   transition: opacity 0.25s ease;
@@ -198,10 +181,8 @@ form {
   padding: 1rem;
   border-radius: 10px;
   max-width: 500px;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
+  flex-direction: column;
   gap: 2rem;
 }
 form h1, form p {
@@ -212,7 +193,6 @@ form button {
   padding: 10px;
 }
 form div {
-  display: -ms-grid;
   display: grid;
   gap: 0.5rem;
 }
@@ -240,9 +220,7 @@ select {
   color: white;
   cursor: pointer;
   background: transparent;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   outline: none;
   grid-area: select;
   padding: 10px;
@@ -255,10 +233,8 @@ select::-ms-expand {
   border-radius: 5px;
   background-color: #181818;
   grid-template-areas: "select";
-  display: -ms-grid;
   display: grid;
-  -ms-flex-align: center;
-      align-items: center;
+  align-items: center;
 }
 .select:focus-within {
   background-color: #131313;
@@ -274,8 +250,7 @@ select::-ms-expand {
   width: 0.8em;
   height: 0.5em;
   background-color: white;
-  -webkit-clip-path: polygon(100% 0%, 0 0%, 50% 100%);
-          clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
   grid-area: select;
   transition: transform 0.25s ease;
 }
