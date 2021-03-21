@@ -7,7 +7,7 @@ const fastify_1 = __importDefault(require("fastify"));
 const server = fastify_1.default({ logger: { level: 'info' } });
 server.register(require('fastify-formbody'));
 server.post('/', async (req) => {
-    const res = await fetch('https://www.donationalerts.com/u/spworlds', {
+    const res = await fetch('https://www.donationalerts.com/u/ronedit', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
