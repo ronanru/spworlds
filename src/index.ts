@@ -33,4 +33,4 @@ server.post('/', async (req: any, resp) => {
   }
 });
 
-server.listen(80);
+server.listen(process.env.PORT ?? 3000);
