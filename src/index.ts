@@ -33,4 +33,4 @@ server.post('/', async (req: any, resp) => {
   }
 });
 
-server.listen(8080);
+server.listen(80);
