@@ -16,7 +16,7 @@ server.register(require('fastify-static'), {
 server.post('/', async (req, resp) => {
     var _a, _b;
     const formdata = new form_data_1.default();
-    formdata.append('data', `step=billing&currency=2&amount=${[3500, 1500, 1000][req.body.server]}&email=${req.body.email}&billing_system_type=${req.body.billing}&name=АвтоДонат&comment=${req.body.vk}&phone=${(_a = req.body.phone) !== null && _a !== void 0 ? _a : ''}&phone_number=${(_b = req.body.phone_number) !== null && _b !== void 0 ? _b : ''}`.replace(/\+/g, '%2B'));
+    formdata.append('data', `step=billing&currency=2&amount=${[3500, 1500, 1000][req.body.server]}&email=${req.body.email}&billing_system_type=${req.body.billing}&name=${req.body.nick}&comment=${req.body.vk}&phone=${(_a = req.body.phone) !== null && _a !== void 0 ? _a : ''}&phone_number=${(_b = req.body.phone_number) !== null && _b !== void 0 ? _b : ''}`.replace(/\+/g, '%2B'));
     const res = await node_fetch_1.default('https://www.donationalerts.com/u/spworlds', {
         method: 'POST',
         headers: formdata.getHeaders(),

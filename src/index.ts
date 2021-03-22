@@ -15,7 +15,7 @@ server.post('/', async (req: any, resp) => {
   const formdata = new FormData();
   formdata.append(
     'data',
-    `step=billing&currency=2&amount=${[3500, 1500, 1000][req.body.server]}&email=${req.body.email}&billing_system_type=${req.body.billing}&name=АвтоДонат&comment=${
+    `step=billing&currency=2&amount=${[3500, 1500, 1000][req.body.server]}&email=${req.body.email}&billing_system_type=${req.body.billing}&name=${req.body.nick}&comment=${
       req.body.vk
     }&phone=${req.body.phone ?? ''}&phone_number=${req.body.phone_number ?? ''}`.replace(/\+/g, '%2B')
   );
