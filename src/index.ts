@@ -1,6 +1,7 @@
 import Fastify from 'fastify';
 import { resolve } from 'path';
 import fetch from 'node-fetch';
+import FormData from 'form-data';
 
 const server = Fastify({ logger: { level: 'info' } });
 
@@ -11,20 +12,22 @@ server.register(require('fastify-static'), {
 });
 
 server.post('/', async (req: any, resp) => {
-  const res = await fetch('https://www.donationalerts.com/u/ronedit', {
+  const formdata = new FormData();
+  formdata.append(
+    'data',
+    `step=billing&currency=2&amount=${[3500, 1500, 1000][req.body.server]}&email=${req.body.email}&billing_system_type=${req.body.billing}&name=АвтоДонат&comment=${
+      req.body.vk
+    }&phone=${req.body.phone ?? ''}&phone_number=${req.body.phone_number ?? ''}`.replace(/\+/g, '%2B')
+  );
+  const res = await fetch('https://www.donationalerts.com/u/spworlds', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    body: `data=${encodeURIComponent(
-      `step=billing&currency=2&amount=${[3500, 1500, 1000][req.body.server]}&email=${req.body.email}&billing_system_type=${req.body.billing}&name=АвтоДонат&comment=${
-        req.body.vk
-      }&phone=${req.body.phone ?? ''}&phone_number=${req.body.phone_number ?? ''}`
-    )}`
+    headers: formdata.getHeaders(),
+    body: formdata
   });
   resp.header('Content-Type', 'text/html; charset=UTF-8');
   if (res.ok) {
     const json = await res.json();
+    console.log(json);
     if (!json.invoice_page_url)
       return '<!DOCTYPE html><html><head></head><body>Произошла ошибка. Попробуйте еще раз или оплатите вручную тут: <a href="https://www.donationalerts.com/r/spworlds">https://www.donationalerts.com/r/spworlds</a></body></html>';
     return `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="7; url='${json.invoice_page_url}'" /></head><body><p>Перенаправление. Если вас не перенаправило автоматически, нажмите <a href="${json.invoice_page_url}">сюда</a>.</p></body></html>`;
