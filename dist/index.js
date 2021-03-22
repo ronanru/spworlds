@@ -2,6 +2,7 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 const fastify_1 = __importDefault(require("fastify"));
 const path_1 = require("path");
@@ -31,4 +32,4 @@ server.post('/', async (req, resp) => {
         return '<!DOCTYPE html><html><head></head><body>Произошла ошибка. Попробуйте еще раз или оплатите вручную тут: <a href="https://www.donationalerts.com/r/spworlds">https://www.donationalerts.com/r/spworlds</a></body></html>';
     }
 });
-server.listen(8080);
+server.listen((_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3000);
