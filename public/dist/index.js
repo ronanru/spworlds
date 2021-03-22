@@ -23,6 +23,16 @@ window.onclick = (event) => {
         setTimeout(() => (modal.style.display = 'none'), 500);
     }
 };
+
+if (billingInput.value == 'QIWI_MYCOM')
+        qiwiInputContainer.style.display = 'grid';
+    else
+        qiwiInputContainer.style.display = 'none';
+    if (billingInput.value == 'MOBILE_FAKE')
+        telInputContainer.style.display = 'grid';
+    else
+        telInputContainer.style.display = 'none';
+
 const onInputChange = () => {
     if (billingInput.value == 'QIWI_MYCOM')
         qiwiInputContainer.style.display = 'grid';
