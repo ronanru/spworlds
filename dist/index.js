@@ -1,35 +1,34 @@
 "use strict";
-const copyIp = () => {
-    if ('clipboard' in navigator) {
-        navigator.clipboard.writeText('mc.spworlds.ru').then(() => {
-            const ipBytton = document.getElementById('ipBytton');
-            ipBytton.innerText = 'Скопировано!';
-            setTimeout(() => {
-                ipBytton.innerText = 'IP: mc.spworlds.ru';
-            }, 1000);
-        });
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const fastify_1 = __importDefault(require("fastify"));
+const path_1 = require("path");
+const node_fetch_1 = __importDefault(require("node-fetch"));
+const server = fastify_1.default({ logger: { level: 'info' } });
+server.register(require('fastify-formbody'));
+server.register(require('fastify-static'), {
+    root: path_1.resolve(__dirname, '../public')
+});
+server.post('/', async (req, resp) => {
+    var _a, _b;
+    const res = await node_fetch_1.default('https://www.donationalerts.com/u/ronedit', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `data=${encodeURIComponent(`step=billing&currency=2&amount=${[3500, 1500, 1000][req.body.server]}&email=${req.body.email}&billing_system_type=${req.body.billing}&name=АвтоДонат&comment=${req.body.vk}&phone=${(_a = req.body.phone) !== null && _a !== void 0 ? _a : ''}&phone_number=${(_b = req.body.phone_number) !== null && _b !== void 0 ? _b : ''}`)}`
+    });
+    resp.header('Content-Type', 'text/html; charset=UTF-8');
+    if (res.ok) {
+        const json = await res.json();
+        if (!json.invoice_page_url)
+            return '<!DOCTYPE html><html><head></head><body>Произошла ошибка. Попробуйте еще раз или оплатите вручную тут: <a href="https://www.donationalerts.com/r/spworlds">https://www.donationalerts.com/r/spworlds</a></body></html>';
+        return `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="7; url='${json.invoice_page_url}'" /></head><body><p>Перенаправление. Если вас не перенаправило автоматически, нажмите <a href="${json.invoice_page_url}">сюда</a>.</p></body></html>`;
     }
-};
-const modal = document.getElementById('modal'), formTitle = document.getElementById('formTitle'), serverInput = document.getElementById('serverInput'), billingInput = document.getElementById('billingInput'), qiwiInputContainer = document.getElementById('qiwiInputContainer'), telInputContainer = document.getElementById('telInputContainer');
-const buy = (server) => {
-    modal.style.display = 'grid';
-    formTitle.innerText = `Войти на ${['СП', 'СПм', 'СПб'][server]}`;
-    serverInput.value = server.toString();
-    setTimeout(() => (modal.style.opacity = '1'), 1);
-};
-window.onclick = (event) => {
-    if (event.target == modal) {
-        modal.style.opacity = '0';
-        setTimeout(() => (modal.style.display = 'none'), 500);
+    else {
+        return '<!DOCTYPE html><html><head></head><body>Произошла ошибка. Попробуйте еще раз или оплатите вручную тут: <a href="https://www.donationalerts.com/r/spworlds">https://www.donationalerts.com/r/spworlds</a></body></html>';
     }
-};
-const onInputChange = () => {
-    if (billingInput.value == 'QIWI_MYCOM')
-        qiwiInputContainer.style.display = 'grid';
-    else
-        qiwiInputContainer.style.display = 'none';
-    if (billingInput.value == 'MOBILE_FAKE')
-        telInputContainer.style.display = 'grid';
-    else
-        telInputContainer.style.display = 'none';
-};
+});
+server.listen(8080);
