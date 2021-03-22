@@ -32,4 +32,4 @@ server.post('/', async (req, resp) => {
         return '<!DOCTYPE html><html><head></head><body>Произошла ошибка. Попробуйте еще раз или оплатите вручную тут: <a href="https://www.donationalerts.com/r/spworlds">https://www.donationalerts.com/r/spworlds</a></body></html>';
     }
 });
-server.listen((_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3000);
+server.listen((_a = process.env.PORT) !== null && _a !== void 0 ? _a : 3000, '0.0.0.0');
