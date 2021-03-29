@@ -85,13 +85,17 @@
       <p>Made with ❤️ by <a href="https://ronandev.ru">Ronan</a></p>
     </footer>
     <div id="modal" style="display: none; opacity: 0">
-      <form action="http://localhost:3000" method="POST">
+      <form method="POST">
         <input type="text" name="server" id="serverInput" style="display: none" />
         <h1 id="formTitle"></h1>
         <p>
           Мы желаем осуществлять индивидуальный подход к каждому игроку наших серверов. Вы получите доступ не сразу после доната. В течении 24х часов с момента доната, Вам
           напишет администратор, который предоставит вам ссылку на группу в ВК, ссылку на специальный канал в дискорде, впишет ваш ник в WhiteList и даст вам IP сервера.
         </p>
+        <div>
+          <label for="nickInput">Ник в Майнкрафте (лицензия)</label>
+          <input type="text" id="nickInput" name="nick" value="" required />
+        </div>
         <div>
           <label for="vkInput">Ссылка на ваш профиль в ВК</label>
           <input type="url" id="vkInput" name="vk" value="https://vk.com/" required />
