@@ -4,8 +4,11 @@
   "main": "./dist/index.js",
   "license": "MIT",
   "scripts": {
+    "build": "tsc && npm run pub-build",
     "dev": "tsc -w",
-    "start": "node ./dist/index.js"
+    "start": "node ./dist/index.js",
+    "pub-dev": "cd public && concurrently --kill-others \"sass --watch --no-source-map src/:./dist/\" \"tsc -w\"",
+    "pub-build": "cd public && tsc && sass --no-source-map src/:./dist/ && autoprefixer-cli -o ./dist/styles.css ./dist/styles.css"
   },
   "dependencies": {
     "fastify": "^3.14.0",
@@ -13,10 +16,14 @@
     "fastify-static": "^4.0.1",
     "form-data": "^4.0.0",
     "node-fetch": "^2.6.1",
+    "npm": "^7.7.5",
     "path": "^0.12.7"
   },
   "devDependencies": {
     "@types/node": "^14.14.35",
-    "@types/node-fetch": "^2.5.8"
+    "@types/node-fetch": "^2.5.8",
+    "autoprefixer-cli": "^1.0.0",
+    "concurrently": "^6.0.0",
+    "typescript": "^4.2.3"
   }
 }
