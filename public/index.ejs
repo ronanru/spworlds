@@ -13,9 +13,9 @@
     <meta name="og:url" content="spworlds.ru" />
     <meta property="og:locale" content="ru_RU" />
     <meta name="og:description" content="Оригинальный проект в основе которого лежит ванильный сервер по Minecraft и полная свобода действий на нём." />
-    <meta property="og:image" content="./img/logo.png" />
-    <link rel="stylesheet" href="./dist/styles.css" />
-    <link rel="icon" href="./img/logo.png" />
+    <meta property="og:image" content="/img/logo.png" />
+    <link rel="stylesheet" href="/dist/styles.css" />
+    <link rel="icon" href="/img/logo.png" />
   </head>
   <body>
     <header>
@@ -51,33 +51,14 @@
     <section class="our-servers">
       <h1>Наши сервера</h1>
       <div class="servers">
+        <% servers.forEach(({ id, name, description, image, price }) => { %>
         <div>
-          <img src="./img/sp.png" alt="СП" />
-          <h1>СП</h1>
-          <p>
-            Основной сервер, куда войти можно только с лицензией. За жизнью данного сервера следят большинство зрителей стримов от разных ютуберов. Игроки могут создавать свои
-            города или вступать в уже созданные общины.
-          </p>
-          <p class="price">3 500 ₽ <button onclick="buy(0)">Купить</button></p>
+          <img src="<%- image %>" alt="<%= name %>" />
+          <h1><%= name %></h1>
+          <p><%= description %></p>
+          <p class="price"><%- new Intl.NumberFormat('ru-RU').format(price) %> ₽ <button onclick="buy(<%= id %>, '<%= name %>')">Купить</button></p>
         </div>
-        <div>
-          <img src="./img/spm.gif" alt="СПм" />
-          <h1>СПм</h1>
-          <p>
-            Подразделение СП для которого требуется лицензионный Майнкрафт. На этом сервере проходят обходы на которых игроки демонстрируют, что они успели сделать за время
-            пребывания на сервере. Игроки этого сервера САМИ выбирают президента, который будет руководить жизнью сервера.
-          </p>
-          <p class="price">1 500 ₽ <button onclick="buy(1)">Купить</button></p>
-        </div>
-        <div>
-          <img src="./img/spb.png" alt="СПб" />
-          <h1>СПб</h1>
-          <p>
-            Долгожданный сервер СП - бедрок сервер, на который можно заходить и с телефона, и с ПК. Основное кредо этого сервера - взаимоуважение, ролеплей, нет читерам и
-            нон-рпшерам. На сервере действуют органы местного самоуправления. Приятного выживания!
-          </p>
-          <p class="price">1 000 ₽ <button onclick="buy(2)">Купить</button></p>
-        </div>
+        <% }); %>
       </div>
     </section>
     <footer>

@@ -2,18 +2,8 @@
   "compilerOptions": {
     "target": "es2017",
     "module": "esnext",
-    "outDir": "./dist/",
-    "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "alwaysStrict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "outDir": "./dist",
+    "removeComments": true
   },
   "include": ["./src/**/*.ts"]
 }

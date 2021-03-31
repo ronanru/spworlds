@@ -1,3 +1,9 @@
-node_modules/
-dist/
-public/dist/
+/node_modules/
+/dist/
+/public/dist/
+/prisma/migrations/
+/prisma/database.db
+/prisma/database.db-journal
+/admin/node_modules/
+/admin/public/build/
+.env

@@ -17,9 +17,9 @@ const modal = document.getElementById('modal') as HTMLElement,
   qiwiInputContainer = document.getElementById('qiwiInputContainer') as HTMLElement,
   telInputContainer = document.getElementById('telInputContainer') as HTMLElement;
 
-const buy = (server: number): void => {
+const buy = (server: number, name: string): void => {
   modal.style.display = 'grid';
-  formTitle.innerText = `Войти на ${['СП', 'СПм', 'СПб'][server]}`;
+  formTitle.innerText = `Войти на ${name}`;
   serverInput.value = server.toString();
   setTimeout(() => (modal.style.opacity = '1'), 1);
 };
