@@ -146,4 +146,4 @@ server.delete('/api/servers/:id', { preValidation: [(server as any).authenticate
   return {};
 });
 
-server.listen(process.env.PORT ?? 3000);
+server.listen(process.env.PORT ?? 3000, process.env.HOST ?? 'localhost');
