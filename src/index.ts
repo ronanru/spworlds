@@ -47,7 +47,7 @@ server.decorate('authenticate', async (request, reply) => {
   try {
     await request.jwtVerify();
   } catch {
-    reply.status(400).send({ error: 'Ошибка аутентицикации' });
+    reply.status(400).send({ error: 'Ошибка авторизации' });
   }
 });
 
