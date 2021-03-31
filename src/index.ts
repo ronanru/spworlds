@@ -6,7 +6,7 @@ import fastifyStatic from 'fastify-static';
 import fastifyJWT from 'fastify-jwt';
 import fastifyPOV from 'point-of-view';
 import fastifyFormbody from 'fastify-formbody';
-import { verify } from 'argon2';
+import { verify, hash } from 'argon2';
 import { PrismaClient } from '@prisma/client';
 const db = new PrismaClient();
 import 'dotenv/config';
@@ -113,7 +113,7 @@ server.get(
     })
 );
 
-server.post('/api/servers', { preValidation: [(server as any).authenticate] }, async (req, _reply) => {
+server.post('/api/servers', { preValidation: [(server as any).authenticate] }, async req => {
   await db.server.create({
     data: req.body as any
   });
@@ -130,7 +130,7 @@ server.get('/api/servers/:id', { preValidation: [(server as any).authenticate] }
   return server;
 });
 
-server.put('/api/servers/:id', { preValidation: [(server as any).authenticate] }, async (req, _reply) => {
+server.put('/api/servers/:id', { preValidation: [(server as any).authenticate] }, async req => {
   await db.server.update({
     where: {
       id: Number((req.params as any).id)
@@ -140,8 +140,51 @@ server.put('/api/servers/:id', { preValidation: [(server as any).authenticate] }
   return {};
 });
 
-server.delete('/api/servers/:id', { preValidation: [(server as any).authenticate] }, async (req, _reply) => {
+server.delete('/api/servers/:id', { preValidation: [(server as any).authenticate] }, async req => {
   await db.server.delete({ where: { id: Number((req.params as any).id) } });
+  return {};
+});
+
+server.post('/api/changepassword', { preValidation: [(server as any).authenticate] }, async req => {
+  await db.user.update({
+    where: {
+      username: (req.user as any).username
+    },
+    data: {
+      password: await hash((req.body as any).password)
+    }
+  });
+  return {};
+});
+
+server.get('/api/users', { preValidation: [(server as any).authenticate] }, async (req, reply) => {
+  if (!(req.user as any).isAdmin) reply.code(400).send({ error: 'Недостаточно прав' });
+  return await db.user.findMany({
+    select: {
+      isAdmin: true,
+      username: true
+    }
+  });
+});
+
+server.post('/api/users', { preValidation: [(server as any).authenticate] }, async (req, reply) => {
+  if (!(req.user as any).isAdmin) reply.code(400).send({ error: 'Недостаточно прав' });
+  const password = Math.random().toString(36).substring(2); //random string
+  await db.user.create({
+    data: {
+      isAdmin: (req.body as any).isAdmin,
+      username: (req.body as any).username,
+      password: await hash(password)
+    }
+  });
+  return { password };
+});
+
+server.delete('/api/users/:username', { preValidation: [(server as any).authenticate] }, async (req, reply) => {
+  if (!(req.user as any).isAdmin) reply.code(400).send({ error: 'Недостаточно прав' });
+  await db.user.delete({
+    where: req.params
+  });
   return {};
 });
 

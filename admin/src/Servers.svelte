@@ -1,8 +1,10 @@
 <script lang="ts">
-  import { List, ListItem, Button, Icon, TextField, Textarea, ProgressCircular } from 'svelte-materialify';
+  import { List, ListItem, Button, Icon, ProgressCircular } from 'svelte-materialify';
   import { mdiPencil, mdiDelete, mdiPlus } from '@mdi/js';
-  import { getServers, createServer, deleteServer, getServer, updateServer } from './requests';
+  import { getServers, createServer, deleteServer, getServer, updateServer, changePassword } from './requests';
+  import Users from './Users.svelte';
   import ServerEditor from './ServerEditor.svelte';
+  import auth from './auth';
 
   let action = 'view';
 
@@ -16,13 +18,7 @@
     }).then(() => (action = 'view'));
 
   const deleteServerConfirm = serverId => {
-    if (confirm('Вы действительно хотите удалить этот сервер?'))
-      deleteServer(serverId).then(() => {
-        action = 'loading';
-        setTimeout(() => {
-          action = 'view';
-        }, 10);
-      });
+    if (confirm('Вы действительно хотите удалить этот сервер?')) deleteServer(serverId).then(() => reload());
   };
 
   let selectedServer = 0;
@@ -33,6 +29,19 @@
   };
 
   const updateServerSave = (serverId, server) => updateServer(server, serverId).then(() => (action = 'view'));
+
+  const changePasswordSave = () => {
+    const password = prompt('Введите новый пароль');
+    if (!password) return;
+    changePassword(password).then(() => alert('Пароль успешно изменен'));
+  };
+
+  const reload = () => {
+    action = 'loading';
+    setTimeout(() => {
+      action = 'view';
+    }, 10);
+  };
 </script>
 
 {#if action === 'view'}
@@ -57,6 +66,15 @@
       </ListItem>
     </List>
   {/await}
+  {#if $auth.isAdmin}
+    <Users {reload} />
+  {/if}
+  <List>
+    <h4 class="mb-4">Управление аккаунтом</h4>
+    <ListItem class="rounded">
+      <Button text class="primary-text ml-auto mr-auto d-flex" on:click={changePasswordSave}>Сменить пароль</Button>
+    </ListItem>
+  </List>
 {:else if action === 'create'}
   <ServerEditor
     server={{
