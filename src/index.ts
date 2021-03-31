@@ -68,8 +68,7 @@ server.get('/', async (_req, reply) =>
 server.post('/', async (req: any, reply) => {
   reply.header('Content-Type', 'text/html; charset=UTF-8');
   const server = await db.server.findUnique(req.body.server);
-  if (!server)
-    return '<!DOCTYPE html><html><head></head><body>Произошла ошибка. Попробуйте еще раз или оплатите вручную тут: <a href="https://www.donationalerts.com/r/spworlds">https://www.donationalerts.com/r/spworlds</a></body></html>';
+  if (!server) return `<!DOCTYPE html><html><head></head><body>Произошла ошибка. Попробуйте еще раз.</body></html>`;
   const formdata = new FormData();
   formdata.append(
     'data',
@@ -83,11 +82,11 @@ server.post('/', async (req: any, reply) => {
     body: formdata
   });
   if (!res.ok)
-    return '<!DOCTYPE html><html><head></head><body>Произошла ошибка. Попробуйте еще раз или оплатите вручную тут: <a href="https://www.donationalerts.com/r/spworlds">https://www.donationalerts.com/r/spworlds</a></body></html>';
+    return `<!DOCTYPE html><html><head></head><body>Произошла ошибка. Попробуйте еще раз или оплатите вручную тут: <a href="https://www.donationalerts.com/r/${server.donationalerts}">https://www.donationalerts.com/r/${server.donationalerts}</a></body></html>`;
   const json = await res.json();
   console.log(json);
   if (!json.invoice_page_url)
-    return '<!DOCTYPE html><html><head></head><body>Произошла ошибка. Попробуйте еще раз или оплатите вручную тут: <a href="https://www.donationalerts.com/r/spworlds">https://www.donationalerts.com/r/spworlds</a></body></html>';
+    return `<!DOCTYPE html><html><head></head><body>Произошла ошибка. Попробуйте еще раз или оплатите вручную тут: <a href="https://www.donationalerts.com/r/${server.donationalerts}">https://www.donationalerts.com/r/${server.donationalerts}</a></body></html>`;
   return `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="7; url='${json.invoice_page_url}'" /></head><body><p>Перенаправление. Если вас не перенаправило автоматически, нажмите <a href="${json.invoice_page_url}">сюда</a>.</p></body></html>`;
 });
 
