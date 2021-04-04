@@ -51,6 +51,8 @@ server.decorate('authenticate', async (request, reply) => {
   }
 });
 
+server.setNotFoundHandler((_req, reply) => reply.code(404).sendFile('404.html', resolve(__dirname, '../public/')));
+
 server.get('/', async (_req, reply) =>
   reply.view('index.ejs', {
     servers: await db.server.findMany({
