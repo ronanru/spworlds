@@ -40,7 +40,7 @@ server.register(fastifyPOV, {
 });
 
 server.register(fastifyJWT, {
-  secret: 'supersecret'
+  secret: process.env.JWT_SECRET
 });
 
 server.decorate('authenticate', async (request, reply) => {
